@@ -10,14 +10,14 @@ class SimplePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Simple way')),
       body: Center(
-        child: GetBuilder<Counter>(
-          init: Counter(),
+        child: GetBuilder<SimpleCounter>(
+          init: SimpleCounter(),
           builder: (controller) => Text('clicks : ${controller.count}'),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.find<Counter>().increase();
+          Get.find<SimpleCounter>().increase();
         },
       ),
     );

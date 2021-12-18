@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_state_management_practice/getx/controller.dart';
@@ -7,17 +9,15 @@ class ReactivePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var counter = Get.put(ReactiveCounter());
     return Scaffold(
       appBar: AppBar(title: const Text('Reactive way')),
       body: Center(
-        child: GetBuilder<Counter>(
-          init: Counter(),
-          builder: (controller) => Text('clicks : ${controller.count}'),
-        ),
+        child: Obx(() => Text('Clicks : ${counter.count}')),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.find<Counter>().increase();
+          counter.count++;
         },
       ),
     );
